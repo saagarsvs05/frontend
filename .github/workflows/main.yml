@@ -23,7 +23,7 @@ jobs:
         docker push us-central1-docker.pkg.dev/se-poc-347619/githubactionrepo/frontend:latest
     - name: Install GKE Auth Plugin
       run: |
-        gcloud components install gke-gcloud-auth-plugin
+        sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
         gcloud auth application-default login
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
     - name: Get GKE credentials
