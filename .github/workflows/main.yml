@@ -21,6 +21,11 @@ jobs:
       run: |
         docker build -t us-central1-docker.pkg.dev/se-poc-347619/githubactionrepo/frontend:latest .
         docker push us-central1-docker.pkg.dev/se-poc-347619/githubactionrepo/frontend:latest
+    - name: Install GKE Auth Plugin
+      run: |
+        gcloud components install gke-gcloud-auth-plugin
+        gcloud auth application-default login
+        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
     - name: Get GKE credentials
       run: gcloud container clusters get-credentials forgithubaction --region us-central1 --project se-poc-347619
     - name: Install kubectl
